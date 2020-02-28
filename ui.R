@@ -9,24 +9,40 @@
 
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
-    
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
-    )
+
+header <- dashboardHeader(
+  title = "COVID19"
+)
+
+sidebar = dashboardSidebar(
+  sidebarMenu(
+    menuItem("Data Visualization", tabName = "data_visualization", icon = icon("chart-pie")),
+    menuItem("Data Table", tabName = "data_table", icon = icon("table")),
+    menuItem("Information", tabName = "information", icon = icon("info"))
   )
+  
+)
+
+body = dashboardBody(
+  tabItems(
+    tabItem(
+      tabName = "data_visualization",
+      fluidRow(
+        box(
+          title = "年代・性別",
+          width = 6, height = 450,
+          plotOutput(outputId = "age_gender")
+        ),
+        box(
+          title = "感染者数の推移",
+          width = 6, height = 450,
+          plotOutput(outputId = "Infected_num")
+        )
+      )
+     ),
+    tabItem(
+      tabName = 'data_table'
+    )
 ))
+
+shinyUIui <- dashboardPage(header, sidebar, body)
