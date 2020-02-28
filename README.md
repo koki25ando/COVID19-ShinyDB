@@ -1,0 +1,1 @@
+[COVID19 Vizualization](https://toyokeizai.net/sp/visual/tko/covid19/)
